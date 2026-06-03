@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#eef3ef" />
+    <title>健康规划入口</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eef3ef;
+        --ink: #1f2728;
+        --muted: #66716f;
+        --green: #2f6f5e;
+        --blue: #315f8d;
+        --line: #d3ddd6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      }
+
+      main {
+        width: min(880px, 100%);
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: white;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: 34px;
+        letter-spacing: 0;
+      }
+
+      p {
+        margin: 0 0 22px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .links {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      a {
+        display: block;
+        min-height: 140px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: white;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      a:first-child {
+        background: var(--green);
+      }
+
+      a:last-child {
+        background: var(--blue);
+      }
+
+      strong {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      span {
+        color: rgba(255, 255, 255, 0.86);
+        line-height: 1.6;
+      }
+
+      @media (max-width: 720px) {
+        body {
+          display: block;
+          padding: 16px;
+        }
+
+        main {
+          padding: 20px;
+          border-radius: 8px;
+        }
+
+        .links {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        h1 {
+          font-size: 28px;
+        }
+
+        p {
+          margin-bottom: 18px;
+          font-size: 15px;
+        }
+
+        a {
+          min-height: 112px;
+          padding: 18px;
+        }
+
+        strong {
+          font-size: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>健康规划入口</h1>
+      <p>如果 Codex 内置浏览器打不开本地页面，请用系统浏览器打开这个入口页。</p>
+      <div class="links">
+        <a href="./meal-planner.html">
+          <strong>年度菜谱原型</strong>
+          <span>8 周轮换菜单、月份食材包、外食规则和购物清单。</span>
+        </a>
+        <a href="./index.html">
+          <strong>健康规划面板</strong>
+          <span>七日饮食、补剂、运动与每日执行追踪。</span>
+        </a>
+      </div>
+    </main>
+    <script src="./pwa.js"></script>
+  </body>
+</html>
