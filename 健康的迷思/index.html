@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#f3f6f3" />
+    <title>个人健康规划</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="健康概览">
+        <div class="brand-block">
+          <p class="eyebrow">个人健康规划</p>
+          <h1>33岁男性｜180cm / 78kg</h1>
+          <p class="summary">目标：清醒头脑、稳定血糖、腰椎友好训练、高质量睡眠与性功能支持。</p>
+        </div>
+
+        <section class="metric-grid" aria-label="核心指标">
+          <article>
+            <span>BMI</span>
+            <strong>24.1</strong>
+            <small>正常偏上</small>
+          </article>
+          <article>
+            <span>睡眠</span>
+            <strong>6h45m</strong>
+            <small>建议拉到 7h30m</small>
+          </article>
+          <article>
+            <span>运动</span>
+            <strong>3+2</strong>
+            <small>游泳 + 康复力量</small>
+          </article>
+          <article>
+            <span>风险</span>
+            <strong>血糖</strong>
+            <small>餐序与碳水窗口优先</small>
+          </article>
+        </section>
+
+        <section class="risk-panel">
+          <h2>规划原则</h2>
+          <ul>
+            <li>每餐顺序固定为蔬菜、蛋白质、碳水。</li>
+            <li>咖啡弱代谢：咖啡放上午，避免下午刺激睡眠。</li>
+            <li>乳糖弱代谢：少用乳制品作为蛋白来源。</li>
+            <li>L4-L5-R1 突出：避开大重量轴向负荷、卷腹和高冲击跳跃。</li>
+          </ul>
+        </section>
+      </aside>
+
+      <section class="planner">
+        <header class="topbar">
+          <nav class="tabs" aria-label="视图切换">
+            <button class="tab is-active" data-view="today">今日执行</button>
+            <button class="tab" data-view="week">七日安排</button>
+            <button class="tab" data-view="supplements">补剂时间</button>
+            <button class="tab" data-view="review">复盘指标</button>
+          </nav>
+          <div class="date-chip" id="dateChip"></div>
+        </header>
+
+        <section class="view is-active" id="todayView" aria-label="今日执行">
+          <div class="day-strip" id="dayStrip"></div>
+
+          <div class="today-layout">
+            <section class="daily-board">
+              <div class="section-heading">
+                <p class="eyebrow">饮食</p>
+                <h2 id="dayTitle"></h2>
+              </div>
+              <div class="meal-list" id="mealList"></div>
+            </section>
+
+            <section class="daily-board accent-board">
+              <div class="section-heading">
+                <p class="eyebrow">训练</p>
+                <h2 id="trainingTitle"></h2>
+              </div>
+              <p class="training-copy" id="trainingCopy"></p>
+              <div class="guardrails">
+                <span>脊柱中立</span>
+                <span>不憋气</span>
+                <span>疼痛即停</span>
+              </div>
+            </section>
+          </div>
+
+          <section class="check-panel">
+            <div>
+              <p class="eyebrow">执行追踪</p>
+              <h2>今日完成度 <span id="progressText">0%</span></h2>
+            </div>
+            <div class="progress-track"><span id="progressBar"></span></div>
+            <div class="check-grid" id="checkGrid"></div>
+          </section>
+        </section>
+
+        <section class="view" id="weekView" aria-label="七日安排">
+          <div class="week-grid" id="weekGrid"></div>
+        </section>
+
+        <section class="view" id="supplementsView" aria-label="补剂时间">
+          <div class="supplement-grid" id="supplementGrid"></div>
+        </section>
+
+        <section class="view" id="reviewView" aria-label="复盘指标">
+          <div class="review-grid">
+            <article class="review-block">
+              <h2>每日记录</h2>
+              <div class="tracker-rows" id="trackerRows"></div>
+            </article>
+            <article class="review-block">
+              <h2>优先级</h2>
+              <ol class="priority-list">
+                <li><strong>睡眠提前</strong><span>23:30 上床，咖啡不晚于 11:00。</span></li>
+                <li><strong>餐后血糖</strong><span>主食集中午餐，晚餐低碳水，每餐后散步 10 分钟。</span></li>
+                <li><strong>腰椎康复</strong><span>McGill Big 3、臀桥、游泳优先，HIIT 暂缓到无痛稳定后。</span></li>
+                <li><strong>补剂核查</strong><span>K2、B6、锌、镁长期剂量建议结合化验与医生意见复核。</span></li>
+              </ol>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./pwa.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

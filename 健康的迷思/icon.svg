@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="健康规划">
+  <rect width="512" height="512" rx="112" fill="#2f6f5e"/>
+  <path fill="#f8fbf7" d="M256 106c67 0 122 55 122 122 0 94-122 178-122 178S134 322 134 228c0-67 55-122 122-122Z"/>
+  <path fill="#2f6f5e" d="M251 174h35l-23 72h63l-105 134 27-91h-57l60-115Z"/>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "name": "健康的迷思",
+  "short_name": "健康规划",
+  "description": "个人健康规划、年度菜谱和每日执行追踪。",
+  "start_url": "./home.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef3ef",
+  "theme_color": "#2f6f5e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
