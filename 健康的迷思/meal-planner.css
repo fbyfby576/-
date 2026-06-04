@@ -143,6 +143,19 @@ select {
   font-weight: 700;
 }
 
+.date-status {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+}
+
 select,
 .day-tab {
   min-height: 42px;
@@ -403,6 +416,10 @@ select {
   .month-band {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .date-status {
+    min-height: 46px;
   }
 }
 

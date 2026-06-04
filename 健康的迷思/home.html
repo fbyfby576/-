@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#eef3ef" />
-    <title>健康的迷思 v16</title>
+    <title>健康的迷思 v20</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icon.svg" />
@@ -296,7 +296,7 @@
     <main class="shell">
       <section class="today-panel" aria-label="今日菜谱">
         <div>
-          <p class="eyebrow">今日菜谱 · v16</p>
+          <p class="eyebrow">今日菜谱 · v20</p>
           <h1 id="todayTitle">今天吃什么</h1>
           <div class="today-meals" id="todayMeals"></div>
         </div>
@@ -353,22 +353,15 @@
         </a>
       </nav>
     </main>
+    <script src="./meal-planner.js"></script>
     <script>
-      const homeMenu = [
-        ["周一", "鸡蛋 2个（约100g） + 燕麦 40g干重 + 蓝莓 50g + 菠菜 100g", "外食：番茄荞麦面，牛肉 100g 或鸡蛋 1个，熟荞麦面约150g，配菜 150g", "鲭鱼 150g + 西兰花 200g + 洋葱 50g + 生菜 80g"],
-        ["周二", "金枪鱼橄榄油罐头 1罐（沥干约100g） + 全麦面包 2片（约70g） + 番茄 120g + 洋葱 30g", "黑虎虾仁 120g + 彩椒 100g + 荞麦面 70g干重 + 菠菜 100g", "鸡腿肉 150g + 香菇 100g + 豆腐 200g（上个买菜周期剩余半盒，当天吃完） + 生菜 100g"],
-        ["周三", "鸡蛋 2个（约100g） + 全麦面包 1片（约35g） + 黄瓜 100g + 番茄 100g", "外食：番茄荞麦面，蛋白 100g，熟荞麦面约150g，配菜 150g", "虾仁 120g + 番茄 150g + 菠菜 150g + 紫甘蓝 100g"],
-        ["周四", "燕麦 40g干重 + 鸡蛋 2个（约100g） + 猕猴桃 1个（约100g）", "牛肉 120g + 西兰花 200g + 全麦意面 70g干重", "虾仁豆腐煲：虾仁 120g + 豆腐 200g（半盒） + 生菜 100g"],
-        ["周五", "鸡蛋开放三明治：鸡蛋 2个（约100g） + 全麦面包 1片（约35g） + 生菜 80g", "外食：番茄荞麦面；应急麦当劳选牛肉/鸡腿堡 1个，去半片面包", "鲭鱼 150g + 彩椒 100g + 洋葱 50g + 菠菜 150g"],
-        ["周六", "鸡蛋 2个（约100g） + 燕麦 40g干重 + 蓝莓 50g", "牛肉 100g + 豆腐 200g（周四开盒剩余半盒，当天吃完） + 生菜 120g + 番茄 100g + 全麦面包 1片（约35g）", "放纵餐前垫底：蛋白 120g + 蔬菜 200g"],
-        ["周日", "番茄炒蛋：鸡蛋 2个（约100g） + 番茄 150g + 全麦面包 1片（约35g）", "虾仁蔬菜汤：虾仁 120g + 蔬菜 250g + 荞麦面 40g干重", "鸡腿肉 150g + 西兰花 200g + 蘑菇 100g"]
-      ];
-      let todayIndex = new Date().getDay();
-      todayIndex = todayIndex === 0 ? 6 : todayIndex - 1;
-      const today = homeMenu[todayIndex];
-      document.getElementById("todayTitle").textContent = `${today[0]}｜今天吃什么`;
+      const plannerData = window.mealPlannerData;
+      const homeToday = new Date();
+      const homeWeek = plannerData.weeks[plannerData.weekIndexForDate(homeToday)];
+      const homeDay = homeWeek.days[plannerData.dayIndexForDate(homeToday)];
+      document.getElementById("todayTitle").textContent = `${homeDay[0]}｜今天吃什么`;
       document.getElementById("todayMeals").innerHTML = ["早餐", "午餐", "晚餐"]
-        .map((meal, index) => `<article class="today-meal"><strong>${meal}</strong><span>${today[index + 1]}</span></article>`)
+        .map((meal, index) => `<article class="today-meal"><strong>${meal}</strong><span>${homeDay[index + 2]}</span></article>`)
         .join("");
     </script>
     <script src="./pwa.js"></script>

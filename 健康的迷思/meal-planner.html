@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#eef3ef" />
-    <title>年度菜谱原型</title>
+    <title>年度菜谱原型 v20</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icon.svg" />
@@ -14,14 +14,14 @@
     <main class="meal-app">
       <aside class="rail">
         <div class="identity">
-          <p>年度菜谱原型</p>
+          <p>年度菜谱原型 v20</p>
           <h1>丰富版控糖菜单</h1>
           <span>78kg 到 73.5kg，再增肌。页面先服务每天执行：今日菜单、今日补剂、本周购物。</span>
         </div>
 
         <section class="score-grid" aria-label="饮食目标">
           <article>
-            <span>蛋白</span>
+            <span>蛋白质</span>
             <strong>120g</strong>
             <small>每日起步目标</small>
           </article>
@@ -55,14 +55,11 @@
 
       <section class="workspace">
         <header class="toolbar">
-          <div class="control-group" aria-label="月份选择">
-            <label for="monthSelect">月份</label>
-            <select id="monthSelect"></select>
-          </div>
           <div class="control-group" aria-label="周次选择">
-            <label for="weekSelect">轮换周</label>
+            <label for="weekSelect">轮换周预览</label>
             <select id="weekSelect"></select>
           </div>
+          <div class="date-status" id="dateStatus" aria-live="polite"></div>
           <div class="control-group" aria-label="买菜日选择">
             <label for="shoppingDaySelect">买菜日</label>
             <select id="shoppingDaySelect"></select>
