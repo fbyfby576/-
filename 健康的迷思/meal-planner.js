@@ -130,6 +130,44 @@ const weeks = [
 
 const dayKeys = ["早餐", "午餐", "晚餐"];
 const weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
+const supplementRules = [
+  {
+    name: "D3-K2",
+    cadence: "每日保留",
+    timing: "早餐后",
+    note: "作为核心补剂保留，不额外叠加其他 K2。"
+  },
+  {
+    name: "L-瓜氨酸",
+    cadence: "每日保留",
+    timing: "晨起空腹或早餐前",
+    note: "围绕血流和勃起质量目标保留，观察 4-8 周体感。"
+  },
+  {
+    name: "甘氨酸镁",
+    cadence: "每日保留",
+    timing: "睡前",
+    note: "服务睡眠、肌肉放松和恢复。"
+  },
+  {
+    name: "维生素 B 族",
+    cadence: "每周一次",
+    timing: "周一早餐后",
+    note: "从高频降到低频，后续用血检和精神状态再判断。"
+  },
+  {
+    name: "姜黄素",
+    cadence: "每周两次",
+    timing: "周二、周六午餐后",
+    note: "从每日改为低频，避免长期高吸收剂量堆叠。"
+  },
+  {
+    name: "锌",
+    cadence: "条件使用",
+    timing: "睡前空腹",
+    note: "当天没有牛肉、虾贝、南瓜子、坚果等锌来源时再考虑。"
+  }
+];
 let selectedMonth = new Date().getMonth();
 let selectedWeek = 0;
 let selectedDay = new Date().getDay();
@@ -219,6 +257,63 @@ function renderDay() {
     "每天争取 12 种食物：主食、蛋白、蔬菜、水果、坚果种子都算。",
     day[1].includes("游泳") ? "游泳日午餐允许荞麦面，避免甜饮。" : "哑铃日午餐是恢复餐，别把碳水砍太狠。"
   ].map((item) => `<span class="execution-item">${item}</span>`).join("");
+  renderSupplements(day);
+}
+
+function zincIsCovered(day) {
+  const text = day.slice(2).join(" ");
+  return /牛肉|虾|黑虎虾|虾仁|贝|牡蛎|南瓜子|坚果/.test(text);
+}
+
+function renderSupplements(day) {
+  const dayName = day[0];
+  const daily = [
+    {
+      name: "D3-K2",
+      status: "今日固定",
+      note: "早餐后随餐。"
+    },
+    {
+      name: "L-瓜氨酸",
+      status: "今日固定",
+      note: "晨起空腹或早餐前。"
+    },
+    {
+      name: "甘氨酸镁",
+      status: "今日固定",
+      note: "睡前服用。"
+    }
+  ];
+
+  if (dayName === "周一") {
+    daily.push({
+      name: "维生素 B 族",
+      status: "本周一次",
+      note: "周一早餐后。"
+    });
+  }
+
+  if (dayName === "周二" || dayName === "周六") {
+    daily.push({
+      name: "姜黄素",
+      status: "本周两次",
+      note: `${dayName}午餐后。`
+    });
+  }
+
+  daily.push({
+    name: "锌",
+    status: zincIsCovered(day) ? "今日通常不用" : "今日可考虑",
+    note: zincIsCovered(day) ? "菜单含牛肉/虾/坚果类锌来源，不默认补。" : "今日锌来源偏少，睡前空腹可补。"
+  });
+
+  document.getElementById("supplementTitle").textContent = `${dayName}｜食物优先，低频补剂`;
+  document.getElementById("todaySupplements").innerHTML = daily
+    .map((item) => `<article class="supplement-card ${item.name === "锌" ? "is-conditional" : ""}"><strong>${item.name}</strong><span>${item.status}</span><p>${item.note}</p></article>`)
+    .join("");
+  document.getElementById("supplementRules").innerHTML = supplementRules
+    .map((item) => `<article class="supplement-card ${item.name === "锌" ? "is-conditional" : ""}"><strong>${item.name}</strong><span>${item.cadence}｜${item.timing}</span><p>${item.note}</p></article>`)
+    .join("");
 }
 
 function renderShopping() {

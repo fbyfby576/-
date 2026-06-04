@@ -250,14 +250,16 @@ select {
 }
 
 .meal-card h3,
-.outside-grid h3 {
+.outside-grid h3,
+.supplement-layout h3 {
   margin: 0 0 8px;
   color: var(--green);
   font-size: 16px;
 }
 
 .meal-card p,
-.outside-grid p {
+.outside-grid p,
+.supplement-card p {
   margin: 0;
   color: #3f494a;
   line-height: 1.7;
@@ -286,6 +288,48 @@ select {
 
 .shopping-item {
   background: var(--soft-gold);
+  color: #7f5c20;
+}
+
+.supplement-panel {
+  margin-bottom: 16px;
+}
+
+.supplement-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  gap: 14px;
+}
+
+.supplement-list {
+  display: grid;
+  gap: 10px;
+}
+
+.supplement-card {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.supplement-card strong,
+.supplement-card span {
+  display: block;
+}
+
+.supplement-card strong {
+  margin-bottom: 6px;
+}
+
+.supplement-card span {
+  margin-bottom: 8px;
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.supplement-card.is-conditional span {
   color: #7f5c20;
 }
 
@@ -331,6 +375,7 @@ select {
   .meal-app,
   .day-board,
   .grid-2,
+  .supplement-layout,
   .outside-grid,
   .purchase-grid {
     grid-template-columns: 1fr;
@@ -373,6 +418,7 @@ select {
   .rule-card ul,
   .prep-list,
   .meal-card p,
+  .supplement-card p,
   .outside-grid p,
   .purchase-card p {
     font-size: 15px;
