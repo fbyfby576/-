@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#eef3ef" />
-    <title>修行计划</title>
+    <title>玄学计划</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icon.svg" />
@@ -142,6 +142,7 @@
       .principle-card,
       .ritual-card,
       .path-card,
+      .symbol-card,
       .warning-card {
         border: 1px solid var(--line);
         border-radius: 8px;
@@ -197,12 +198,17 @@
       .principle-grid,
       .ritual-grid,
       .path-grid,
-      .environment-grid {
+      .environment-grid,
+      .symbol-grid {
         display: grid;
         gap: 10px;
       }
 
       .principle-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .symbol-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
@@ -214,21 +220,24 @@
 
       .principle-card,
       .ritual-card,
-      .path-card {
+      .path-card,
+      .symbol-card {
         padding: 16px;
         box-shadow: none;
       }
 
       .principle-card strong,
       .ritual-card strong,
-      .path-card strong {
+      .path-card strong,
+      .symbol-card strong {
         display: block;
         margin-bottom: 8px;
       }
 
       .principle-card span,
       .ritual-card span,
-      .path-card span {
+      .path-card span,
+      .symbol-card span {
         display: block;
         color: var(--muted);
         line-height: 1.65;
@@ -236,23 +245,27 @@
 
       .principle-card:nth-child(1),
       .ritual-card:nth-child(1),
-      .path-card:nth-child(1) {
+      .path-card:nth-child(1),
+      .symbol-card:nth-child(1) {
         background: var(--soft-green);
       }
 
       .principle-card:nth-child(2),
       .ritual-card:nth-child(2),
-      .path-card:nth-child(2) {
+      .path-card:nth-child(2),
+      .symbol-card:nth-child(2) {
         background: var(--soft-red);
       }
 
       .principle-card:nth-child(3),
       .ritual-card:nth-child(3),
-      .path-card:nth-child(3) {
+      .path-card:nth-child(3),
+      .symbol-card:nth-child(3) {
         background: var(--soft-gold);
       }
 
-      .principle-card:nth-child(4) {
+      .principle-card:nth-child(4),
+      .symbol-card:nth-child(4) {
         background: var(--soft-blue);
       }
 
@@ -309,7 +322,8 @@
         .principle-grid,
         .ritual-grid,
         .path-grid,
-        .environment-grid {
+        .environment-grid,
+        .symbol-grid {
           grid-template-columns: 1fr;
         }
 
@@ -346,6 +360,7 @@
         .principle-card,
         .ritual-card,
         .path-card,
+        .symbol-card,
         .question {
           padding: 13px;
         }
@@ -354,7 +369,8 @@
         li,
         .principle-card span,
         .ritual-card span,
-        .path-card span {
+        .path-card span,
+        .symbol-card span {
           font-size: 15px;
           line-height: 1.65;
         }
@@ -367,11 +383,11 @@
 
       <header class="hero">
         <div>
-          <p class="eyebrow">修行</p>
+          <p class="eyebrow">玄学</p>
           <h1>避寒就温，以木生火</h1>
           <p>把玄学当成一套提醒系统：用学习、体能、表达和团队保护精神秩序，让财富服务生命，而不是吞噬生命。</p>
         </div>
-        <aside class="compass-card" aria-label="修行总纲">
+        <aside class="compass-card" aria-label="玄学总纲">
           <span>总纲</span>
           <strong>木火路线</strong>
         </aside>
@@ -412,7 +428,7 @@
       </section>
 
       <section class="panel">
-        <p class="eyebrow">每日修行</p>
+        <p class="eyebrow">每日玄学</p>
         <h2>用小动作补木火</h2>
         <div class="ritual-grid">
           <article class="ritual-card">
@@ -498,7 +514,31 @@
             <span>绿色、青色稳住学习与精神；红、橙、紫增强行动力。黑白银灰少做主色。</span>
           </article>
         </div>
-        <p class="note">这页是个人修行叙事和决策提醒，不是宿命判断。现实行动仍以健康、现金流、关系和长期学习这些可验证指标为准。</p>
+        <p class="note">这页是个人玄学叙事和决策提醒，不是宿命判断。现实行动仍以健康、现金流、关系和长期学习这些可验证指标为准。</p>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">随身与形象</p>
+        <h2>把木火做成每天看得见、闻得到的提醒</h2>
+        <div class="symbol-grid">
+          <article class="symbol-card">
+            <strong>木手串</strong>
+            <span>沉香、檀香、小叶紫檀等木质手串都可以，重点是“木”的提醒和安定感，不必追求昂贵或堆满手腕。</span>
+          </article>
+          <article class="symbol-card">
+            <strong>翡翠</strong>
+            <span>优先小件、青绿、温润，不用追求夸张尺寸。它更像一个“保留精神根基”的视觉锚点。</span>
+          </article>
+          <article class="symbol-card">
+            <strong>留头发</strong>
+            <span>头发象征生发之气，可以留得稍长、有自然蓬松感；前提是清爽、干净、利落，不变成拖沓。</span>
+          </article>
+          <article class="symbol-card">
+            <strong>香水</strong>
+            <span>选择木质、绿意、柑橘、茶感或温暖树脂调，少量使用。重要工作日把气味当作进入状态的开关。</span>
+          </article>
+        </div>
+        <p class="note">这些不是“越贵越灵”，而是把木火路线外化成可重复的日常信号：清爽、温暖、有生命力、有秩序。</p>
       </section>
     </main>
 
