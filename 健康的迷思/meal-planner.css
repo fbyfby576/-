@@ -439,24 +439,24 @@ select {
   }
 
   .day-tabs {
-    order: 5;
-  }
-
-  .day-board {
     order: 1;
   }
 
-  .supplement-panel {
+  .day-board {
     order: 2;
   }
 
-  .shopping-section {
+  .supplement-panel {
     order: 3;
+  }
+
+  .shopping-section {
+    order: 4;
     margin-bottom: 14px;
   }
 
   .diabetes-panel {
-    order: 4;
+    order: 5;
   }
 
   .month-panel {
@@ -513,8 +513,14 @@ select {
 
   .day-tabs {
     flex-wrap: nowrap;
-    margin: 0 -16px 10px;
-    padding: 0 16px 4px;
+    position: sticky;
+    top: 0;
+    z-index: 8;
+    margin: -18px -16px 12px;
+    padding: 10px 16px 8px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(238, 243, 239, 0.96);
+    backdrop-filter: blur(12px);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -557,6 +563,13 @@ select {
   }
 
   .toolbar {
+    margin-right: -14px;
+    margin-left: -14px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .day-tabs {
     margin-right: -14px;
     margin-left: -14px;
     padding-right: 14px;
