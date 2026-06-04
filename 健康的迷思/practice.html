@@ -7,6 +7,7 @@
     <title>修行计划</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
     <style>
       :root {
         color-scheme: light;
@@ -15,11 +16,23 @@
         --ink: #1f2728;
         --muted: #65716f;
         --line: #d3ddd6;
+        --green: #2f6f5e;
         --red: #a54840;
+        --blue: #315f8d;
+        --gold: #a87828;
+        --soft-green: #e6f0e8;
+        --soft-red: #f4e7e2;
+        --soft-blue: #e6eef7;
+        --soft-gold: #f4ead9;
+        --shadow: 0 18px 42px rgba(28, 48, 43, 0.12);
       }
 
       * {
         box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
       }
 
       body {
@@ -32,7 +45,7 @@
       }
 
       main {
-        width: min(720px, 100%);
+        width: min(1040px, 100%);
         margin: 0 auto;
       }
 
@@ -40,61 +53,455 @@
         color: var(--red);
         text-decoration: none;
         font-weight: 700;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .card {
-        margin-top: 18px;
-        padding: 22px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--panel);
+      .top-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: end;
+        padding: 8px 0 18px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
       h1 {
-        margin: 0 0 12px;
-        font-size: 32px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: 22px;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 17px;
         letter-spacing: 0;
       }
 
       p,
       li {
         color: var(--muted);
-        line-height: 1.75;
+        line-height: 1.72;
       }
 
-      ul {
-        margin: 14px 0 0;
-        padding-left: 20px;
+      .hero p {
+        max-width: 680px;
+        margin-bottom: 0;
+      }
+
+      .compass-card {
+        min-width: 190px;
+        padding: 15px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .compass-card span,
+      .compass-card strong {
+        display: block;
+      }
+
+      .compass-card span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .compass-card strong {
+        margin-top: 6px;
+        font-size: 22px;
+      }
+
+      .panel,
+      .principle-card,
+      .ritual-card,
+      .path-card,
+      .warning-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .panel {
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+
+      .summary {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+        gap: 14px;
+      }
+
+      .thesis {
+        padding: 18px;
+        border-radius: 8px;
+        background: var(--soft-green);
+      }
+
+      .thesis strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--green);
+        font-size: 18px;
+      }
+
+      .thesis p {
+        margin-bottom: 0;
+      }
+
+      .warning-card {
+        padding: 18px;
+        background: var(--soft-red);
+        box-shadow: none;
+      }
+
+      .warning-card strong {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--red);
+        font-size: 18px;
+      }
+
+      .warning-card p {
+        margin-bottom: 0;
+      }
+
+      .principle-grid,
+      .ritual-grid,
+      .path-grid,
+      .environment-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .principle-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .ritual-grid,
+      .path-grid,
+      .environment-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .principle-card,
+      .ritual-card,
+      .path-card {
+        padding: 16px;
+        box-shadow: none;
+      }
+
+      .principle-card strong,
+      .ritual-card strong,
+      .path-card strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .principle-card span,
+      .ritual-card span,
+      .path-card span {
+        display: block;
+        color: var(--muted);
+        line-height: 1.65;
+      }
+
+      .principle-card:nth-child(1),
+      .ritual-card:nth-child(1),
+      .path-card:nth-child(1) {
+        background: var(--soft-green);
+      }
+
+      .principle-card:nth-child(2),
+      .ritual-card:nth-child(2),
+      .path-card:nth-child(2) {
+        background: var(--soft-red);
+      }
+
+      .principle-card:nth-child(3),
+      .ritual-card:nth-child(3),
+      .path-card:nth-child(3) {
+        background: var(--soft-gold);
+      }
+
+      .principle-card:nth-child(4) {
+        background: var(--soft-blue);
+      }
+
+      .question-list {
+        display: grid;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .question {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .question strong,
+      .question span {
+        display: block;
+      }
+
+      .question span {
+        margin-top: 5px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .tag {
+        padding: 7px 10px;
+        border-radius: 8px;
+        background: var(--soft-blue);
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .note {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 920px) {
+        .hero,
+        .summary,
+        .principle-grid,
+        .ritual-grid,
+        .path-grid,
+        .environment-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .compass-card {
+          min-width: 0;
+        }
       }
 
       @media (max-width: 560px) {
         body {
           padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+          background: var(--panel);
         }
 
-        .card {
-          padding: 18px;
+        .hero {
+          padding-top: 4px;
         }
 
         h1 {
-          font-size: 28px;
+          font-size: 30px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .panel {
+          padding: 16px;
+          box-shadow: none;
+        }
+
+        .thesis,
+        .warning-card,
+        .principle-card,
+        .ritual-card,
+        .path-card,
+        .question {
+          padding: 13px;
+        }
+
+        p,
+        li,
+        .principle-card span,
+        .ritual-card span,
+        .path-card span {
+          font-size: 15px;
+          line-height: 1.65;
         }
       }
     </style>
   </head>
   <body>
     <main>
-      <a href="./home.html">返回首页</a>
-      <section class="card">
-        <h1>修行</h1>
-        <p>这里会放睡眠、呼吸、站桩、反向凯格尔、情绪复盘和注意力训练。先做轻量入口，后面再把内容细化。</p>
-        <ul>
-          <li>睡前：呼吸和降噪流程。</li>
-          <li>白天：短复盘、站桩和久坐打断。</li>
-          <li>每周：记录睡眠、精神和压力。</li>
-        </ul>
+      <a class="top-link" href="./home.html">返回首页</a>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">修行</p>
+          <h1>避寒就温，以木生火</h1>
+          <p>把玄学当成一套提醒系统：用学习、体能、表达和团队保护精神秩序，让财富服务生命，而不是吞噬生命。</p>
+        </div>
+        <aside class="compass-card" aria-label="修行总纲">
+          <span>总纲</span>
+          <strong>木火路线</strong>
+        </aside>
+      </header>
+
+      <section class="panel summary">
+        <article class="thesis">
+          <strong>最好的发展方式</strong>
+          <p>以学习和专业为根，以技术、认知、内容、金融、咨询、AI、战略和资源整合为桥，把才华变成财富；用团队、合伙、制度和平台分担压力。</p>
+        </article>
+        <article class="warning-card">
+          <strong>最大警惕：贪财坏印</strong>
+          <p>为了钱、规模、地位或短期胜负，牺牲健康、精神秩序、长期学习、亲密关系和价值底线，就是走偏。越接近财富，越要保护木火。</p>
+        </article>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">四句总策略</p>
+        <h2>每日放在脑子里的方向盘</h2>
+        <div class="principle-grid">
+          <article class="principle-card">
+            <strong>以木立身</strong>
+            <span>持续学习、专业深耕、保留精神根基。读书、研究、静修，是续航来源。</span>
+          </article>
+          <article class="principle-card">
+            <strong>以火行动</strong>
+            <span>增强体能、扩大正向社交，借助团队与平台，而不是独自硬扛。</span>
+          </article>
+          <article class="principle-card">
+            <strong>以土生财</strong>
+            <span>把表达、技术、创意和方法论产品化，形成可复用的知识资产。</span>
+          </article>
+          <article class="principle-card">
+            <strong>制金不逐金</strong>
+            <span>可以追求财富，但不能被财富反向控制。低负债、轻资产、长期主义。</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">每日修行</p>
+        <h2>用小动作补木火</h2>
+        <div class="ritual-grid">
+          <article class="ritual-card">
+            <strong>早上：见光与冥想</strong>
+            <span>起床后拉开窗帘，接触自然光；做 10 分钟冥想，先稳住神经系统。</span>
+          </article>
+          <article class="ritual-card">
+            <strong>白天：学习与输出</strong>
+            <span>每天保留一段专业学习或深度阅读；把认知沉淀成笔记、内容或方法论。</span>
+          </article>
+          <article class="ritual-card">
+            <strong>晚上：降噪与复盘</strong>
+            <span>拉伸、呼吸或站桩 10 分钟。睡前问一句：今天有没有为了钱伤到木火？</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">事业路径</p>
+        <h2>轻资产，高智识，低负债</h2>
+        <div class="path-grid">
+          <article class="path-card">
+            <strong>适合的桥</strong>
+            <span>技术、AI、金融研究、战略咨询、内容/IP、教育培训、知识服务、风险管理、资源整合。</span>
+          </article>
+          <article class="path-card">
+            <strong>组织方式</strong>
+            <span>团队、合伙、制度、平台。不要用个人意志硬吞所有压力。</span>
+          </article>
+          <article class="path-card">
+            <strong>财富原则</strong>
+            <span>散财聚人，分利分权。把财转成团队火力，而不是独占成压力。</span>
+          </article>
+        </div>
+        <div class="tag-row" aria-label="事业关键词">
+          <span class="tag">轻资产</span>
+          <span class="tag">专业化</span>
+          <span class="tag">知识变现</span>
+          <span class="tag">平台化</span>
+          <span class="tag">合伙制</span>
+          <span class="tag">低负债</span>
+          <span class="tag">高毛利</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">决策防火墙</p>
+        <h2>遇到大钱、大项目、大诱惑先停一下</h2>
+        <div class="question-list">
+          <article class="question">
+            <strong>它会伤害健康和睡眠吗？</strong>
+            <span>如果要靠长期熬夜、焦虑和身体透支换增长，先降级。</span>
+          </article>
+          <article class="question">
+            <strong>它会挤掉学习和专业根基吗？</strong>
+            <span>如果只剩追热点、追规模、追短期胜负，就是贪财坏印的信号。</span>
+          </article>
+          <article class="question">
+            <strong>它会破坏关系和价值底线吗？</strong>
+            <span>亲密关系、信誉、长期合作和内心平静，优先级高于一笔快钱。</span>
+          </article>
+          <article class="question">
+            <strong>它是不是重资产、高杠杆、孤注一掷？</strong>
+            <span>若是，默认不做；除非有制度、团队、现金流和退出机制保护。</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <p class="eyebrow">空间与环境</p>
+        <h2>让环境帮你补木火</h2>
+        <div class="environment-grid">
+          <article class="path-card">
+            <strong>方向</strong>
+            <span>东、东南、南为优先象征：学习、贵人、体能和团队。避免长期陷入阴冷、孤立、高压环境。</span>
+          </article>
+          <article class="path-card">
+            <strong>居住办公</strong>
+            <span>采光优先，朝东或朝南更好；多用植物和木质材料，减少阴暗潮湿和冰冷质感。</span>
+          </article>
+          <article class="path-card">
+            <strong>视觉提醒</strong>
+            <span>绿色、青色稳住学习与精神；红、橙、紫增强行动力。黑白银灰少做主色。</span>
+          </article>
+        </div>
+        <p class="note">这页是个人修行叙事和决策提醒，不是宿命判断。现实行动仍以健康、现金流、关系和长期学习这些可验证指标为准。</p>
       </section>
     </main>
+
     <script src="./pwa.js"></script>
   </body>
 </html>

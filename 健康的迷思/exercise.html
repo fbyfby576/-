@@ -7,6 +7,7 @@
     <title>锻炼计划</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
     <style>
       :root {
         color-scheme: light;
@@ -16,10 +17,20 @@
         --muted: #65716f;
         --line: #d3ddd6;
         --blue: #315f8d;
+        --green: #2f6f5e;
+        --gold: #a87828;
+        --soft-blue: #e6eef7;
+        --soft-green: #e6f0e8;
+        --soft-gold: #f4ead9;
+        --shadow: 0 18px 42px rgba(28, 48, 43, 0.12);
       }
 
       * {
         box-sizing: border-box;
+      }
+
+      html {
+        -webkit-text-size-adjust: 100%;
       }
 
       body {
@@ -32,7 +43,7 @@
       }
 
       main {
-        width: min(720px, 100%);
+        width: min(1040px, 100%);
         margin: 0 auto;
       }
 
@@ -40,61 +51,490 @@
         color: var(--blue);
         text-decoration: none;
         font-weight: 700;
+        -webkit-tap-highlight-color: transparent;
       }
 
-      .card {
-        margin-top: 18px;
-        padding: 22px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--panel);
+      .top-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: end;
+        padding: 8px 0 18px;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--gold);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
       }
 
       h1 {
-        margin: 0 0 12px;
-        font-size: 32px;
+        margin-bottom: 10px;
+        font-size: 36px;
+        line-height: 1.12;
+        letter-spacing: 0;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: 22px;
+        letter-spacing: 0;
+      }
+
+      h3 {
+        margin-bottom: 8px;
+        font-size: 17px;
         letter-spacing: 0;
       }
 
       p,
       li {
         color: var(--muted);
-        line-height: 1.75;
+        line-height: 1.72;
       }
 
-      ul {
-        margin: 14px 0 0;
-        padding-left: 20px;
+      .hero p {
+        max-width: 680px;
+        margin-bottom: 0;
+      }
+
+      .week-chip {
+        min-width: 170px;
+        padding: 15px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .week-chip span,
+      .week-chip strong {
+        display: block;
+      }
+
+      .week-chip span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .week-chip strong {
+        margin-top: 6px;
+        font-size: 22px;
+      }
+
+      .panel,
+      .day-card,
+      .habit-card,
+      .option-card {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: var(--shadow);
+      }
+
+      .panel {
+        padding: 20px;
+        margin-bottom: 16px;
+      }
+
+      .day-tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        margin: 0 -2px 16px;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      .day-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .day-tab {
+        flex: 0 0 112px;
+        min-height: 50px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--ink);
+        font: inherit;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      .day-tab.is-active {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: white;
+      }
+
+      .today-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+        gap: 14px;
+      }
+
+      .day-card {
+        padding: 18px;
+      }
+
+      .training-list,
+      .habit-grid,
+      .option-grid {
+        display: grid;
+        gap: 10px;
+      }
+
+      .training-item {
+        padding: 14px;
+        border-radius: 8px;
+        background: var(--soft-blue);
+      }
+
+      .training-item strong,
+      .habit-card strong,
+      .option-card strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .training-item p,
+      .habit-card p,
+      .option-card p {
+        margin-bottom: 0;
+      }
+
+      .habit-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .habit-card,
+      .option-card {
+        padding: 16px;
+      }
+
+      .habit-card {
+        background: var(--soft-green);
+        box-shadow: none;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+      }
+
+      .tag {
+        padding: 7px 10px;
+        border-radius: 8px;
+        background: var(--soft-gold);
+        color: #7f5c20;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .week-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .mini-day {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+
+      .mini-day strong,
+      .mini-day span {
+        display: block;
+      }
+
+      .mini-day span {
+        margin-top: 5px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .option-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .option-card {
+        box-shadow: none;
+      }
+
+      @media (max-width: 880px) {
+        .hero,
+        .today-grid,
+        .habit-grid,
+        .week-grid,
+        .option-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .week-chip {
+          min-width: 0;
+        }
       }
 
       @media (max-width: 560px) {
         body {
           padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
+          background: var(--panel);
         }
 
-        .card {
-          padding: 18px;
+        .hero {
+          padding-top: 4px;
         }
 
         h1 {
-          font-size: 28px;
+          font-size: 30px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .panel,
+        .day-card {
+          padding: 16px;
+          box-shadow: none;
+        }
+
+        .day-tabs {
+          margin-right: -14px;
+          margin-left: -14px;
+          padding: 0 14px 4px;
+        }
+
+        .day-tab {
+          flex-basis: 104px;
+          min-height: 48px;
+        }
+
+        .training-item,
+        .habit-card,
+        .option-card,
+        .mini-day {
+          padding: 13px;
+        }
+
+        p,
+        li {
+          font-size: 15px;
+          line-height: 1.65;
         }
       }
     </style>
   </head>
   <body>
     <main>
-      <a href="./home.html">返回首页</a>
-      <section class="card">
-        <h1>锻炼</h1>
-        <p>这里会放一三五游泳、二四哑铃、腰椎康复、膝盖保养和主动恢复。下一步我们把训练表做成可执行卡片。</p>
-        <ul>
-          <li>一三五：游泳为主。</li>
-          <li>二四：哑铃力量和 McGill Big 3。</li>
-          <li>周末：恢复、拉伸、呼吸和散步。</li>
-        </ul>
+      <a class="top-link" href="./home.html">返回首页</a>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">锻炼</p>
+          <h1>游泳打底，哑铃建设</h1>
+          <p>一三五游泳，二四六哑铃；McGill Big 3 穿插保护腰椎。每天早上十分钟冥想，晚上十分钟拉伸、呼吸或站桩。</p>
+        </div>
+        <aside class="week-chip" aria-label="周训练结构">
+          <span>本周结构</span>
+          <strong>3 游泳 + 3 哑铃</strong>
+        </aside>
+      </header>
+
+      <section class="panel">
+        <nav class="day-tabs" id="dayTabs" aria-label="每日锻炼"></nav>
+        <div class="today-grid">
+          <article class="day-card">
+            <p class="eyebrow">今日训练</p>
+            <h2 id="dayTitle"></h2>
+            <div class="training-list" id="trainingList"></div>
+            <div class="tag-row" id="guardrails"></div>
+          </article>
+
+          <article class="day-card">
+            <p class="eyebrow">每日固定</p>
+            <h2>早晚修复</h2>
+            <div class="habit-grid">
+              <article class="habit-card">
+                <strong>早上 10 分钟冥想</strong>
+                <p>坐姿放松，鼻吸鼻呼。目标是稳定注意力，不追求玄妙体验。</p>
+              </article>
+              <article class="habit-card">
+                <strong>晚上 10 分钟修复</strong>
+                <p>拉伸、呼吸或站桩三选一。腰紧时优先呼吸和温和拉伸。</p>
+              </article>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">周计划</div>
+        <h2>固定节奏</h2>
+        <div class="week-grid" id="weekGrid"></div>
+      </section>
+
+      <section class="panel">
+        <div class="eyebrow">下次迭代备选</div>
+        <h2>先记住，不进主计划</h2>
+        <div class="option-grid" id="optionGrid"></div>
       </section>
     </main>
+
     <script src="./pwa.js"></script>
+    <script>
+      const weekPlan = [
+        {
+          day: "周一",
+          type: "游泳",
+          title: "游泳 1000m + McGill Big 3 轻量",
+          items: [
+            ["游泳", "1000m，优先自由泳/仰泳。保持脊柱中立，不追求冲刺。"],
+            ["McGill Big 3", "晚间轻量：改良卷腹、侧桥、鸟狗各 2 组。"]
+          ],
+          guardrails: ["不憋气", "不冲刺", "腰腿放射痛即停"]
+        },
+        {
+          day: "周二",
+          type: "哑铃 A",
+          title: "肩背臂 + 核心稳定",
+          items: [
+            ["McGill Big 3", "训练前 8-10 分钟，短组高质量。"],
+            ["哑铃划船", "单臂扶凳划船 3 组，每侧 10-12 次。"],
+            ["地板卧推", "3 组 8-12 次，避免腰部反弓。"],
+            ["侧平举 + 后束", "各 2 组 12-15 次，轻重量控制。"]
+          ],
+          guardrails: ["RPE 6-7", "不做重过头推举", "不憋气"]
+        },
+        {
+          day: "周三",
+          type: "游泳",
+          title: "游泳 1000m + 放松",
+          items: [
+            ["游泳", "1000m，节奏稳定。腰或膝不舒服时减少蛙泳。"],
+            ["晚间修复", "10 分钟腹式呼吸或站桩，不加额外力量。"]
+          ],
+          guardrails: ["稳定心肺", "减少蛙泳", "睡前降噪"]
+        },
+        {
+          day: "周四",
+          type: "哑铃 B",
+          title: "后侧链 + 膝盖保养",
+          items: [
+            ["McGill Big 3", "训练前 1-2 轮，作为腰椎稳定热身。"],
+            ["臀桥/臀推", "3 组 10-15 次，臀部发力，腰不代偿。"],
+            ["箱式深蹲", "3 组 8-10 次，不蹲到底。"],
+            ["提踵 + 台阶上步", "各 2-3 组，动作慢，膝盖脚尖同向。"]
+          ],
+          guardrails: ["脊柱中立", "疼痛降级", "不追重量"]
+        },
+        {
+          day: "周五",
+          type: "游泳",
+          title: "游泳 1000m + 轻修复",
+          items: [
+            ["游泳", "1000m，作为一周主要心肺训练收尾。"],
+            ["McGill Big 3", "如果腰部状态好，晚间轻量 1-2 轮；累就只做呼吸。"]
+          ],
+          guardrails: ["不过量", "动作干净", "累了就减"]
+        },
+        {
+          day: "周六",
+          type: "哑铃 C",
+          title: "全身轻量 + 姿态修复",
+          items: [
+            ["McGill Big 3", "训练前轻量激活。"],
+            ["哑铃全身循环", "划船、地板卧推、臀桥、箱式深蹲各 2 组。"],
+            ["扩胸/肩胛后缩", "2-3 组 12-15 次，抵消久坐姿态。"]
+          ],
+          guardrails: ["轻量", "不练到力竭", "给周日留恢复"]
+        },
+        {
+          day: "周日",
+          type: "恢复",
+          title: "主动恢复",
+          items: [
+            ["散步", "20-40 分钟，最好餐后完成。"],
+            ["晚间修复", "拉伸、呼吸或站桩 10 分钟。"],
+            ["复盘", "记录腰、膝、睡眠、精神状态。"]
+          ],
+          guardrails: ["不补训练债", "只恢复", "准备下一周"]
+        }
+      ];
+
+      const options = [
+        ["握力", "可作为碎片化训练，但先不进主计划，避免增加执行负担。"],
+        ["平板支撑", "暂不列入；以后如果加，也用短组，不拼时长。"],
+        ["吊杠", "以后考虑辅助吊杠，脚尖点地，不摆动。"],
+        ["瑜伽", "以后只选修复向，避开深前屈、强扭转和极限后弯。"],
+        ["自重深蹲", "主计划已用箱式深蹲替代，后续可逐步升级。"],
+        ["反向凯格尔", "更适合放进修行/晚间放松模块，后续再细化。"]
+      ];
+
+      let selectedDay = new Date().getDay();
+      selectedDay = selectedDay === 0 ? 6 : selectedDay - 1;
+
+      function renderTabs() {
+        document.getElementById("dayTabs").innerHTML = weekPlan
+          .map((day, index) => `<button class="day-tab ${index === selectedDay ? "is-active" : ""}" data-day="${index}">${day.day}<br>${day.type}</button>`)
+          .join("");
+      }
+
+      function renderToday() {
+        const plan = weekPlan[selectedDay];
+        document.getElementById("dayTitle").textContent = `${plan.day}｜${plan.title}`;
+        document.getElementById("trainingList").innerHTML = plan.items
+          .map(([name, detail]) => `<article class="training-item"><strong>${name}</strong><p>${detail}</p></article>`)
+          .join("");
+        document.getElementById("guardrails").innerHTML = plan.guardrails
+          .map((item) => `<span class="tag">${item}</span>`)
+          .join("");
+      }
+
+      function renderWeek() {
+        document.getElementById("weekGrid").innerHTML = weekPlan
+          .map((day) => `<article class="mini-day"><strong>${day.day}｜${day.type}</strong><span>${day.title}</span></article>`)
+          .join("");
+      }
+
+      function renderOptions() {
+        document.getElementById("optionGrid").innerHTML = options
+          .map(([name, detail]) => `<article class="option-card"><strong>${name}</strong><p>${detail}</p></article>`)
+          .join("");
+      }
+
+      document.addEventListener("click", (event) => {
+        const button = event.target.closest(".day-tab");
+        if (!button) return;
+        selectedDay = Number(button.dataset.day);
+        renderTabs();
+        renderToday();
+      });
+
+      renderTabs();
+      renderToday();
+      renderWeek();
+      renderOptions();
+    </script>
   </body>
 </html>
