@@ -106,14 +106,6 @@
         -webkit-tap-highlight-color: transparent;
       }
 
-      .hero {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: end;
-        gap: 18px;
-        padding: 20px 0 18px;
-      }
-
       .eyebrow {
         margin: 0 0 8px;
         color: var(--gold);
@@ -126,34 +118,6 @@
         font-size: 36px;
         line-height: 1.12;
         letter-spacing: 0;
-      }
-
-      .hero p {
-        max-width: 620px;
-        margin: 12px 0 0;
-        color: var(--muted);
-        line-height: 1.75;
-      }
-
-      .status-card {
-        min-width: 184px;
-        padding: 16px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        background: var(--panel);
-        box-shadow: var(--shadow);
-      }
-
-      .status-card span {
-        display: block;
-        color: var(--muted);
-        font-size: 13px;
-      }
-
-      .status-card strong {
-        display: block;
-        margin-top: 6px;
-        font-size: 22px;
       }
 
       .entry-grid {
@@ -275,13 +239,8 @@
       }
 
       @media (max-width: 860px) {
-        .today-panel,
-        .hero {
+        .today-panel {
           grid-template-columns: 1fr;
-        }
-
-        .status-card {
-          min-width: 0;
         }
 
         .entry-grid {
@@ -302,10 +261,6 @@
           padding: max(14px, env(safe-area-inset-top)) 14px max(14px, env(safe-area-inset-bottom));
         }
 
-        .hero {
-          padding-top: 10px;
-        }
-
         .today-panel {
           padding: 16px;
           box-shadow: none;
@@ -313,10 +268,6 @@
 
         h1 {
           font-size: 30px;
-        }
-
-        .hero p {
-          font-size: 15px;
         }
 
         .entry-card {
@@ -352,18 +303,6 @@
         <a class="today-action" href="./meal-planner.html">打开菜谱</a>
       </section>
 
-      <header class="hero">
-        <div>
-          <p class="eyebrow">健康的迷思</p>
-          <h1>把生活拆成三件事</h1>
-          <p>先吃得稳定，再练得安全，最后把注意力和睡眠慢慢养回来。</p>
-        </div>
-        <aside class="status-card" aria-label="当前目标">
-          <span>当前阶段</span>
-          <strong>减脂到 74kg</strong>
-        </aside>
-      </header>
-
       <section class="entry-grid" aria-label="主功能入口">
         <a class="entry-card meal" href="./meal-planner.html">
           <div>
@@ -372,6 +311,7 @@
             <p>年度菜单、买菜日计划、外食规则、备餐和购物清单。</p>
           </div>
           <div class="entry-meta">
+            <span>当前阶段：减脂到 74kg</span>
             <span>8周轮换</span>
             <span>周四买菜</span>
           </div>
