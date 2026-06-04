@@ -1,4 +1,4 @@
-const CACHE_NAME = "health-planner-v14";
+const CACHE_NAME = "health-planner-v16";
 const APP_SHELL = [
   "./",
   "./home.html",

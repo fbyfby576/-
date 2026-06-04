@@ -267,6 +267,41 @@ select {
   color: #7f5c20;
 }
 
+.shopping-note {
+  margin: 14px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.purchase-plan {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.purchase-card {
+  min-height: 132px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.purchase-card h3 {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 15px;
+}
+
+.purchase-card p {
+  margin: 0;
+  color: #3f494a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
 .supplement-panel {
   margin-bottom: 16px;
 }
@@ -355,7 +390,8 @@ select {
 
 @media (max-width: 1080px) {
   .meal-app,
-  .day-board {
+  .day-board,
+  .purchase-plan {
     grid-template-columns: 1fr;
   }
 
@@ -542,6 +578,11 @@ select {
   }
 
   .meal-card {
+    padding: 13px;
+  }
+
+  .purchase-card {
+    min-height: auto;
     padding: 13px;
   }
 
