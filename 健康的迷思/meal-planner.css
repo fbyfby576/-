@@ -13,6 +13,7 @@
   --soft-green: #e6f0e8;
   --soft-blue: #e6eef7;
   --soft-gold: #f4ead9;
+  --soft-red: #f4e7e2;
   --shadow: 0 20px 48px rgba(28, 48, 43, 0.12);
 }
 
@@ -302,10 +303,64 @@ select {
   color: #7f5c20;
 }
 
+.diabetes-panel {
+  margin-bottom: 16px;
+}
+
+.diabetes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.diabetes-grid article {
+  min-height: 188px;
+  padding: 15px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.diabetes-grid span {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--soft-red);
+  color: var(--red);
+  font-weight: 800;
+}
+
+.diabetes-grid h3 {
+  margin: 0 0 8px;
+  color: var(--red);
+  font-size: 16px;
+  line-height: 1.35;
+}
+
+.diabetes-grid p,
+.medical-note {
+  margin: 0;
+  color: #3f494a;
+  line-height: 1.65;
+}
+
+.medical-note {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 @media (max-width: 1080px) {
   .meal-app,
   .day-board {
     grid-template-columns: 1fr;
+  }
+
+  .diabetes-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .toolbar,
@@ -356,7 +411,8 @@ select {
   .identity span,
   .rule-card ul,
   .meal-card p,
-  .supplement-card p {
+  .supplement-card p,
+  .diabetes-grid p {
     font-size: 15px;
     line-height: 1.65;
   }
@@ -372,7 +428,7 @@ select {
 
   .toolbar {
     position: static;
-    order: 5;
+    order: 6;
     display: grid;
     grid-template-columns: 1fr;
     margin: 0 0 14px;
@@ -383,7 +439,7 @@ select {
   }
 
   .day-tabs {
-    order: 4;
+    order: 5;
   }
 
   .day-board {
@@ -399,8 +455,12 @@ select {
     margin-bottom: 14px;
   }
 
+  .diabetes-panel {
+    order: 4;
+  }
+
   .month-panel {
-    order: 6;
+    order: 7;
   }
 
   .control-group {
@@ -476,6 +536,15 @@ select {
   }
 
   .meal-card {
+    padding: 13px;
+  }
+
+  .diabetes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .diabetes-grid article {
+    min-height: auto;
     padding: 13px;
   }
 }

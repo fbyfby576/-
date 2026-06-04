@@ -2,7 +2,7 @@
   "name": "健康的迷思",
   "short_name": "健康规划",
   "description": "菜谱、锻炼、修行三板块的个人健康规划。",
-  "start_url": "./home.html?v=10",
+  "start_url": "./home.html?v=11",
   "scope": "./",
   "display": "standalone",
   "background_color": "#eef3ef",
