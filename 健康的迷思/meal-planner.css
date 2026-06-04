@@ -113,8 +113,7 @@ select {
   margin: 0;
 }
 
-.rule-card ul,
-.prep-list {
+.rule-card ul {
   margin: 14px 0 0;
   padding-left: 20px;
   line-height: 1.75;
@@ -144,7 +143,6 @@ select {
 }
 
 select,
-.phase,
 .day-tab {
   min-height: 42px;
   border: 1px solid var(--line);
@@ -163,13 +161,11 @@ select {
   gap: 8px;
 }
 
-.phase,
 .day-tab {
   padding: 0 14px;
   cursor: pointer;
 }
 
-.phase.is-active,
 .day-tab.is-active {
   border-color: var(--green);
   background: var(--green);
@@ -195,17 +191,13 @@ select {
 
 .season-tags,
 .day-tabs,
-.execution-list,
-.shopping-list,
-.outside-grid,
-.purchase-grid {
+.shopping-list {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
 }
 
 .tag,
-.execution-item,
 .shopping-item {
   border-radius: 8px;
   padding: 8px 10px;
@@ -219,10 +211,9 @@ select {
   margin-bottom: 16px;
 }
 
-.day-board,
-.grid-2 {
+.day-board {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+  grid-template-columns: 1fr;
   gap: 16px;
   margin-bottom: 16px;
 }
@@ -230,10 +221,6 @@ select {
 .meal-column,
 .panel {
   padding: 20px;
-}
-
-.side-column {
-  background: var(--soft-blue);
 }
 
 .meal-list {
@@ -249,29 +236,17 @@ select {
   background: white;
 }
 
-.meal-card h3,
-.outside-grid h3,
-.supplement-layout h3 {
+.meal-card h3 {
   margin: 0 0 8px;
   color: var(--green);
   font-size: 16px;
 }
 
 .meal-card p,
-.outside-grid p,
 .supplement-card p {
   margin: 0;
   color: #3f494a;
   line-height: 1.7;
-}
-
-.execution-list {
-  margin-top: 18px;
-}
-
-.execution-item {
-  background: white;
-  color: var(--blue);
 }
 
 .panel-head {
@@ -293,12 +268,6 @@ select {
 
 .supplement-panel {
   margin-bottom: 16px;
-}
-
-.supplement-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 14px;
 }
 
 .supplement-list {
@@ -333,51 +302,9 @@ select {
   color: #7f5c20;
 }
 
-.outside-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.purchase-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.purchase-card {
-  min-height: 156px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-}
-
-.purchase-card h3 {
-  margin: 0 0 8px;
-  color: var(--green);
-  font-size: 16px;
-}
-
-.purchase-card p {
-  margin: 0;
-  color: #3f494a;
-  line-height: 1.7;
-}
-
-.outside-grid article {
-  min-height: 136px;
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-}
-
 @media (max-width: 1080px) {
   .meal-app,
-  .day-board,
-  .grid-2,
-  .supplement-layout,
-  .outside-grid,
-  .purchase-grid {
+  .day-board {
     grid-template-columns: 1fr;
   }
 
@@ -428,11 +355,8 @@ select {
 
   .identity span,
   .rule-card ul,
-  .prep-list,
   .meal-card p,
-  .supplement-card p,
-  .outside-grid p,
-  .purchase-card p {
+  .supplement-card p {
     font-size: 15px;
     line-height: 1.65;
   }
@@ -448,7 +372,7 @@ select {
 
   .toolbar {
     position: static;
-    order: 4;
+    order: 5;
     display: grid;
     grid-template-columns: 1fr;
     margin: 0 0 14px;
@@ -459,60 +383,37 @@ select {
   }
 
   .day-tabs {
-    order: 1;
+    order: 4;
   }
 
   .day-board {
-    order: 2;
+    order: 1;
   }
 
   .supplement-panel {
-    order: 3;
-  }
-
-  .month-panel {
-    order: 5;
-  }
-
-  .variety-panel {
-    order: 6;
-  }
-
-  .purchase-panel {
-    order: 7;
+    order: 2;
   }
 
   .shopping-section {
-    order: 8;
+    order: 3;
+    margin-bottom: 14px;
   }
 
-  .outside-panel {
-    order: 9;
+  .month-panel {
+    order: 6;
   }
 
   .control-group {
     gap: 5px;
   }
 
-  select,
-  .segmented,
-  .phase {
+  select {
     width: 100%;
   }
 
   select,
-  .phase,
   .day-tab {
     min-height: 46px;
-  }
-
-  .segmented {
-    gap: 8px;
-  }
-
-  .phase {
-    display: grid;
-    place-items: center;
   }
 
   .month-band,
@@ -539,13 +440,11 @@ select {
   }
 
   .season-tags,
-  .shopping-list,
-  .execution-list {
+  .shopping-list {
     gap: 7px;
   }
 
   .tag,
-  .execution-item,
   .shopping-item {
     padding: 7px 9px;
     font-size: 12px;
@@ -572,20 +471,12 @@ select {
     scroll-snap-align: start;
   }
 
-  .meal-list,
-  .execution-list {
+  .meal-list {
     margin-top: 14px;
   }
 
-  .meal-card,
-  .purchase-card,
-  .outside-grid article {
+  .meal-card {
     padding: 13px;
-  }
-
-  .purchase-card,
-  .outside-grid article {
-    min-height: auto;
   }
 }
 

@@ -129,51 +129,10 @@ const weeks = [
 ];
 
 const dayKeys = ["早餐", "午餐", "晚餐"];
-const weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"];
-const supplementRules = [
-  {
-    name: "D3-K2",
-    cadence: "每日保留",
-    timing: "早餐后",
-    note: "作为核心补剂保留，不额外叠加其他 K2。"
-  },
-  {
-    name: "L-瓜氨酸",
-    cadence: "每日保留",
-    timing: "晨起空腹或早餐前",
-    note: "围绕血流和勃起质量目标保留，观察 4-8 周体感。"
-  },
-  {
-    name: "甘氨酸镁",
-    cadence: "每日保留",
-    timing: "睡前",
-    note: "服务睡眠、肌肉放松和恢复。"
-  },
-  {
-    name: "维生素 B 族",
-    cadence: "每周一次",
-    timing: "周一早餐后",
-    note: "从高频降到低频，后续用血检和精神状态再判断。"
-  },
-  {
-    name: "姜黄素",
-    cadence: "每周两次",
-    timing: "周二、周六午餐后",
-    note: "从每日改为低频，避免长期高吸收剂量堆叠。"
-  },
-  {
-    name: "锌",
-    cadence: "条件使用",
-    timing: "睡前空腹",
-    note: "当天没有牛肉、虾贝、南瓜子、坚果等锌来源时再考虑。"
-  }
-];
 let selectedMonth = new Date().getMonth();
 let selectedWeek = 0;
 let selectedDay = new Date().getDay();
 selectedDay = selectedDay === 0 ? 6 : selectedDay - 1;
-let shoppingDay = 3;
-let phase = "cut";
 
 function renderSelectors() {
   document.getElementById("monthSelect").innerHTML = months
@@ -182,12 +141,8 @@ function renderSelectors() {
   document.getElementById("weekSelect").innerHTML = weeks
     .map((week, index) => `<option value="${index}">${week.name}</option>`)
     .join("");
-  document.getElementById("shoppingDaySelect").innerHTML = weekdays
-    .map((day, index) => `<option value="${index}">${day}</option>`)
-    .join("");
   document.getElementById("monthSelect").value = selectedMonth;
   document.getElementById("weekSelect").value = selectedWeek;
-  document.getElementById("shoppingDaySelect").value = shoppingDay;
 }
 
 function currentWeek() {
@@ -200,41 +155,6 @@ function renderMonth() {
   document.getElementById("seasonTags").innerHTML = foods.map((food) => `<span class="tag">${food}</span>`).join("");
 }
 
-function renderVariety() {
-  document.getElementById("varietyList").innerHTML = currentWeek().variety
-    .map((item) => `<span class="shopping-item">${item}</span>`)
-    .join("");
-}
-
-function rotatedWeek(startIndex) {
-  return weekdays.map((_, offset) => weekdays[(startIndex + offset) % weekdays.length]);
-}
-
-function renderPurchasePlan() {
-  const cycle = rotatedWeek(shoppingDay);
-  const freshWindow = cycle.slice(0, 4).join("、");
-  const stableWindow = cycle.slice(4).join("、");
-  const beefDay = weekdays[shoppingDay];
-  const freshItems = currentWeek().shopping.filter((item) => /牛肉|鸡腿肉|豆腐|生菜|菠菜|西兰花|番茄|黄瓜|彩椒|蘑菇|小白菜|紫甘蓝|蓝莓|猕猴桃|草莓|柑橘|橙|无乳糖酸奶/.test(item));
-  const freezerItems = currentWeek().shopping.filter((item) => /冻|鲭鱼|黑虎虾|虾|金枪鱼罐头/.test(item));
-  const pantryItems = currentWeek().shopping.filter((item) => !freshItems.includes(item) && !freezerItems.includes(item));
-  document.getElementById("purchaseTitle").textContent = `${beefDay}采购｜鲜食材先吃，冷冻常备托底`;
-  document.getElementById("purchasePlan").innerHTML = [
-    {
-      title: `${beefDay}当天买`,
-      body: `鲜牛肉安排在${beefDay}当天或后 1-2 天吃；如果买整块牛排/牛肉块，周末吃也可以，绞肉和薄切肉更建议先吃或分装冷冻。绿叶菜、番茄、彩椒、菌菇和水果也优先放进 ${freshWindow}。本周鲜食材：${freshItems.join("、") || "按菜单采购蔬菜和鲜肉"}。`
-    },
-    {
-      title: `${stableWindow}托底`,
-      body: `买菜周期后半段用冷冻鱼虾、鸡蛋、豆腐、罐头和全谷物，减少鲜肉鲜菜放太久。本周冷冻/罐头：${freezerItems.join("、") || "冻虾、鲭鱼、金枪鱼罐头按需补"}。`
-    },
-    {
-      title: "常备不怕断",
-      body: `燕麦、全麦面包、荞麦面、坚果种子、无糖高钙豆浆等可以一次补齐。本周常备：${pantryItems.join("、") || "燕麦、全麦面包、荞麦面、坚果种子"}。`
-    }
-  ].map((card) => `<article class="purchase-card"><h3>${card.title}</h3><p>${card.body}</p></article>`).join("");
-}
-
 function renderDayTabs() {
   document.getElementById("dayTabs").innerHTML = currentWeek().days
     .map((day, index) => `<button class="day-tab ${index === selectedDay ? "is-active" : ""}" data-day="${index}">${day[0]}<br>${day[1]}</button>`)
@@ -243,20 +163,10 @@ function renderDayTabs() {
 
 function renderDay() {
   const day = currentWeek().days[selectedDay];
-  const extra = phase === "cut" ? "减脂期：晚餐不加主食，主食集中早餐、午餐和游泳后。" : "增肌期：哑铃日午餐主食加 25%，游泳日可加一份水果。";
   document.getElementById("dayTitle").textContent = `${day[0]}｜${day[1]}`;
   document.getElementById("mealList").innerHTML = dayKeys
     .map((key, index) => `<article class="meal-card"><h3>${key}</h3><p>${day[index + 2]}</p></article>`)
     .join("");
-  document.getElementById("executionTitle").textContent = phase === "cut" ? "减脂执行" : "增肌执行";
-  document.getElementById("executionList").innerHTML = [
-    extra,
-    "早餐 8-9 点；晚餐 18-20 点，睡前不加餐。",
-    "餐后 10 分钟散步，尤其午餐和晚餐。",
-    "蛋白质每餐至少一掌心，蔬菜至少两拳。",
-    "每天争取 12 种食物：主食、蛋白、蔬菜、水果、坚果种子都算。",
-    day[1].includes("游泳") ? "游泳日午餐允许荞麦面，避免甜饮。" : "哑铃日午餐是恢复餐，别把碳水砍太狠。"
-  ].map((item) => `<span class="execution-item">${item}</span>`).join("");
   renderSupplements(day);
 }
 
@@ -311,9 +221,6 @@ function renderSupplements(day) {
   document.getElementById("todaySupplements").innerHTML = daily
     .map((item) => `<article class="supplement-card ${item.name === "锌" ? "is-conditional" : ""}"><strong>${item.name}</strong><span>${item.status}</span><p>${item.note}</p></article>`)
     .join("");
-  document.getElementById("supplementRules").innerHTML = supplementRules
-    .map((item) => `<article class="supplement-card ${item.name === "锌" ? "is-conditional" : ""}"><strong>${item.name}</strong><span>${item.cadence}｜${item.timing}</span><p>${item.note}</p></article>`)
-    .join("");
 }
 
 function renderShopping() {
@@ -330,15 +237,9 @@ document.addEventListener("change", (event) => {
   if (event.target.id === "weekSelect") {
     selectedWeek = Number(event.target.value);
     selectedDay = 0;
-    renderVariety();
-    renderPurchasePlan();
     renderDayTabs();
     renderDay();
     renderShopping();
-  }
-  if (event.target.id === "shoppingDaySelect") {
-    shoppingDay = Number(event.target.value);
-    renderPurchasePlan();
   }
 });
 
@@ -349,20 +250,10 @@ document.addEventListener("click", (event) => {
     renderDayTabs();
     renderDay();
   }
-
-  const phaseButton = event.target.closest(".phase");
-  if (phaseButton) {
-    phase = phaseButton.dataset.phase;
-    document.querySelectorAll(".phase").forEach((button) => button.classList.remove("is-active"));
-    phaseButton.classList.add("is-active");
-    renderDay();
-  }
 });
 
 renderSelectors();
 renderMonth();
-renderVariety();
-renderPurchasePlan();
 renderDayTabs();
 renderDay();
 renderShopping();
