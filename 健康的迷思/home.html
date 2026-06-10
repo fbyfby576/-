@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#eef3ef" />
-    <title>健康的迷思 v20</title>
+    <title>健康的迷思 v21</title>
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icon.svg" />
@@ -296,7 +296,7 @@
     <main class="shell">
       <section class="today-panel" aria-label="今日菜谱">
         <div>
-          <p class="eyebrow">今日菜谱 · v20</p>
+          <p class="eyebrow">今日菜谱 · v21</p>
           <h1 id="todayTitle">今天吃什么</h1>
           <div class="today-meals" id="todayMeals"></div>
         </div>
@@ -308,7 +308,7 @@
           <div>
             <div class="entry-mark">食</div>
             <h2>菜谱</h2>
-            <p>今日菜单、今日补剂、本周购物、控糖提示和年度轮换菜谱。</p>
+            <p>今日菜单、今日补剂、本轮购物、控糖提示和年度轮换菜谱。</p>
           </div>
           <div class="entry-meta">
             <span>当前阶段：减脂到 73.5kg</span>
@@ -357,8 +357,7 @@
     <script>
       const plannerData = window.mealPlannerData;
       const homeToday = new Date();
-      const homeWeek = plannerData.weeks[plannerData.weekIndexForDate(homeToday)];
-      const homeDay = homeWeek.days[plannerData.dayIndexForDate(homeToday)];
+      const homeDay = plannerData.menuDayForDate(homeToday);
       document.getElementById("todayTitle").textContent = `${homeDay[0]}｜今天吃什么`;
       document.getElementById("todayMeals").innerHTML = ["早餐", "午餐", "晚餐"]
         .map((meal, index) => `<article class="today-meal"><strong>${meal}</strong><span>${homeDay[index + 2]}</span></article>`)
